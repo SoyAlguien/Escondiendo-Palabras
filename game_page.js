@@ -20,22 +20,30 @@ function Send() {
     document.getElementById("output").innerHTML = output
     document.getElementById("word").value = ""
 }
+triesnumber = 0
+correct = false
 function check() {
+    triesnumber++
     var response = document.getElementById("answer").value
     if (response.toLowerCase() == word.toLowerCase()) {
+        correct = true
         if (answer == player1) {
             player1_points++
         } else {
             player2_points++
         }
     }
-    if (answer == player1) {
+    if (answer == player1 && triesnumber == 3) {
+        triesnumber = 0
         answer = player2
         question = player1
+        document.getElementById("output").innerHTML=""
     }
-    else {
+    else if (answer == player2 && triesnumber == 3) {
+        triesnumber=0
         answer = player1
         question = player2
+        document.getElementById("output").innerHTML=""
     }
     document.getElementById("player1_name").innerHTML = player1 + " : "
     document.getElementById("player2_name").innerHTML = player2 + " : "
